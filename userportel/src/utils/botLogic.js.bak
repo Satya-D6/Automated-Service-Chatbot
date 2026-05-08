@@ -1,0 +1,130 @@
+// ===== Bot Logic & Sentiment Analysis Utility =====
+
+export const CATEGORIES = [
+  {
+    id: 'certificates',
+    label: '📜 Certificates',
+    icon: '📜',
+    subcategories: [
+      { id: 'bonafide', label: 'Bonafide Certificate' },
+      { id: 'transfer', label: 'Transfer Certificate' },
+      { id: 'study', label: 'Study Certificate' },
+      { id: 'conduct', label: 'Conduct Certificate' },
+      { id: 'provisional', label: 'Provisional Certificate' },
+    ],
+  },
+  {
+    id: 'attendance',
+    label: '📋 Attendance',
+    icon: '📋',
+    subcategories: [
+      { id: 'shortage', label: 'Attendance Shortage Appeal' },
+      { id: 'report', label: 'Attendance Report Request' },
+      { id: 'medical', label: 'Medical Leave Attendance Update' },
+    ],
+  },
+  {
+    id: 'examinations',
+    label: '📝 Examinations',
+    icon: '📝',
+    subcategories: [
+      { id: 'revaluation', label: 'Revaluation Request' },
+      { id: 'hallticket', label: 'Hall Ticket Issue' },
+      { id: 'supple', label: 'Supplementary Exam Registration' },
+      { id: 'marks', label: 'Marks Memo Request' },
+    ],
+  },
+  {
+    id: 'fees',
+    label: '💰 Fee & Payments',
+    icon: '💰',
+    subcategories: [
+      { id: 'receipt', label: 'Fee Receipt Request' },
+      { id: 'refund', label: 'Fee Refund Application' },
+      { id: 'scholarship', label: 'Scholarship Inquiry' },
+      { id: 'due', label: 'Fee Due Clarification' },
+    ],
+  },
+  {
+    id: 'general',
+    label: '🏫 General Services',
+    icon: '🏫',
+    subcategories: [
+      { id: 'idcard', label: 'ID Card Issue/Replacement' },
+      { id: 'hostel', label: 'Hostel Allotment' },
+      { id: 'library', label: 'Library Issue' },
+      { id: 'transport', label: 'Transport Service Request' },
+      { id: 'other', label: 'Other / Custom Request' },
+    ],
+  },
+];
+
+// ===== Sentiment Analysis (keyword-based mock NLP) =====
+const SENTIMENT_RULES = [
+  { keywords: ['urgent', 'asap', 'immediately', 'emergency', 'critical'], sentiment: 'urgent', label: '⚡ Urgent' },
+  { keywords: ['frustrated', 'angry', 'terrible', 'worst', 'disgusting', 'horrible', 'hate', 'annoyed', 'useless'], sentiment: 'negative', label: '😟 Concerned' },
+  { keywords: ['thank', 'thanks', 'great', 'awesome', 'excellent', 'wonderful', 'love', 'happy', 'perfect', 'appreciate'], sentiment: 'positive', label: '😊 Positive' },
+];
+
+export function analyzeSentiment(text) {
+  const lower = text.toLowerCase();
+  for (const rule of SENTIMENT_RULES) {
+    if (rule.keywords.some(kw => lower.includes(kw))) {
+      return { sentiment: rule.sentiment, label: rule.label };
+    }
+  }
+  return { sentiment: 'neutral', label: null };
+}
+
+// ===== Bot Response Generator =====
+export function getBotGreeting(name) {
+  return `Hello ${name}! 👋\n\nWelcome to **UniAssist** — your AI-powered university service portal.\n\nI'm here to help you with any administrative service you need. Let's get started!\n\nPlease select a **service category** below:`;
+}
+
+export function getSubcategoryPrompt(category) {
+  const cat = CATEGORIES.find(c => c.id === category);
+  if (!cat) return 'Please select a valid category.';
+  return `Great choice! ${cat.icon}\n\nHere are the available services under **${cat.label.replace(cat.icon + ' ', '')}**.\n\nPlease select your specific request:`;
+}
+
+export function getDocumentPrompt(subcategory) {
+  const docMap = {
+    bonafide: '📎 Please upload the following:\n• Student ID proof\n• Recent photograph\n• Purpose letter (if any)',
+    transfer: '📎 Please upload:\n• No-dues certificate\n• Fee payment receipts\n• Student ID card copy',
+    revaluation: '📎 Please upload:\n• Hall ticket copy\n• Exam fee receipt\n• Subject details',
+    scholarship: '📎 Please upload:\n• Income certificate\n• Previous year marks\n• Bank passbook copy',
+    default: '📎 Please provide any relevant documents or details to support your request.\n\nYou can use the 📎 attachment button, 📷 camera, or simply type your details.',
+  };
+  return docMap[subcategory] || docMap.default;
+}
+
+export function getSentimentResponse(sentiment) {
+  const responses = {
+    urgent: "⚡ I can see this is urgent. I'll prioritize this request and flag it for immediate attention by our administrative team.",
+    negative: "😔 I'm sorry you're experiencing difficulties. Let me help resolve this as quickly as possible. Your concern has been noted.",
+    positive: "😊 Thank you for your kind words! I'm happy to assist you. Let's proceed with your request.",
+    neutral: '',
+  };
+  return responses[sentiment] || '';
+}
+
+export function generateTicketId() {
+  const prefix = 'SN';
+  const num = Math.floor(100000 + Math.random() * 900000);
+  return `${prefix}-${num}`;
+}
+
+export function getTicketConfirmation(ticketId, category, subcategory) {
+  return {
+    type: 'ticket',
+    ticketId,
+    category,
+    subcategory,
+    message: `Your request has been successfully submitted! 🎉`,
+    details: `Ticket ID: ${ticketId}\nStatus: Assigned to Admin\nEstimated Response: 24-48 hours\n\nYou'll receive updates here as your request is processed.`,
+  };
+}
+
+export function getTimeString() {
+  return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
