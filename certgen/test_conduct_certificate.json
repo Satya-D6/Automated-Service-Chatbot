@@ -1,0 +1,11 @@
+{
+    "certificate_type": "conduct",
+    "student_name": "John Doe",
+    "parent_name": "Jane Doe",
+    "department": "Computer Science",
+    "register_number": "CS2021001",
+    "from_date": "01-06-2022",
+    "to_date": "30-04-2026",
+    "conduct_status": "Excellent",
+    "date": "09-05-2026"
+}

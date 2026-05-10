@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unload unload_date="2026-05-10 09:01:46">
+<sys_script action="INSERT_OR_UPDATE">
+<abort_action>false</abort_action>
+<access>package_private</access>
+<action_delete>false</action_delete>
+<action_insert>true</action_insert>
+<action_query>false</action_query>
+<action_update>true</action_update>
+<active>true</active>
+<add_message>false</add_message>
+<advanced>true</advanced>
+<change_fields>false</change_fields>
+<client_callable>false</client_callable>
+<collection>u_university_request</collection>
+<condition/>
+<description/>
+<execute_function>false</execute_function>
+<filter_condition table="u_university_request"/>
+<is_rest>false</is_rest>
+<message/>
+<name>Auto manage request status</name>
+<order>200</order>
+<priority>100</priority>
+<rest_method display_value=""/>
+<rest_method_text/>
+<rest_service display_value=""/>
+<rest_service_text/>
+<rest_variables/>
+<role_conditions/>
+<script><![CDATA[(function executeRule(current, previous) {
+
+    // On new record → set status as Pending
+    if (current.operation() == 'insert') {
+        current.u_request_status = 'pending';
+        return;
+    }
+
+    var state = current.state.toString();
+
+    // Sync request status with ticket state
+    if (state == '2') { // In Progress
+
+        current.u_request_status = 'in_progress';
+
+    } else if (state == '3') { // On Hold / Awaiting Info
+
+        current.u_request_status = 'awaiting_info';
+
+    } else if (state == '6') { // Resolved
+
+        var approval = current.u_approval_status.toString();
+
+        if (approval == 'approved') {
+
+            current.u_request_status = 'approved';
+
+        } else if (approval == 'rejected') {
+
+            current.u_request_status = 'rejected';
+
+        }
+
+    } else if (state == '7') { // Closed
+
+        current.u_request_status = 'completed';
+
+    }
+
+})(current, previous);]]></script>
+<sys_class_name>sys_script</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2026-05-09 17:26:08</sys_created_on>
+<sys_domain>global</sys_domain>
+<sys_domain_path>/</sys_domain_path>
+<sys_id>1a69f27883708710ccf5a130ceaad3a1</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_name>Auto manage request status</sys_name>
+<sys_overrides display_value=""/>
+<sys_package display_value="Global" source="global">global</sys_package>
+<sys_policy/>
+<sys_scope display_value="Global">global</sys_scope>
+<sys_update_name>sys_script_1a69f27883708710ccf5a130ceaad3a1</sys_update_name>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2026-05-09 17:26:08</sys_updated_on>
+<template/>
+<when>before</when>
+</sys_script>
+<sys_script action="INSERT_OR_UPDATE">
+<abort_action>false</abort_action>
+<access>package_private</access>
+<action_delete>false</action_delete>
+<action_insert>true</action_insert>
+<action_query>false</action_query>
+<action_update>true</action_update>
+<active>true</active>
+<add_message>false</add_message>
+<advanced>true</advanced>
+<change_fields>false</change_fields>
+<client_callable>false</client_callable>
+<collection>u_university_request</collection>
+<condition/>
+<description/>
+<execute_function>false</execute_function>
+<filter_condition table="u_university_request">u_service_categoryVALCHANGES^EQ<item goto="false" or="false" field="u_service_category" endquery="false" value="" operator="VALCHANGES" newquery="false"/>
+<item goto="false" or="false" field="" endquery="true" value="" operator="=" newquery="false"/>
+</filter_condition>
+<is_rest>false</is_rest>
+<message/>
+<name>set approval status based on category</name>
+<order>300</order>
+<priority>100</priority>
+<rest_method display_value=""/>
+<rest_method_text/>
+<rest_service display_value=""/>
+<rest_service_text/>
+<rest_variables/>
+<role_conditions/>
+<script><![CDATA[(function executeRule(current, previous) {
+
+    // Services that require admin approval
+    var requiresApproval = [
+        'Transcript',
+        'Bonafide',
+        'Fee Waiver',
+        'Migration Certificate',
+        'Degree Certificate'
+    ];
+
+    // Services that do not require approval
+    var autoProcess = [
+        'ID Card',
+        'Library',
+        'Bus Pass'
+    ];
+
+    var svcCategory = current.u_service_category.toString();
+
+    // On ticket creation
+    if (current.operation() == 'insert') {
+
+        // Set initial approval status
+        if (requiresApproval.indexOf(svcCategory) >= 0) {
+
+            current.u_approval_status = 'pending_approval';
+
+        } else {
+
+            current.u_approval_status = 'not_required';
+
+        }
+
+        return;
+    }
+
+    // Sync approval status with ServiceNow approval state
+    var approvalState = current.approval.toString();
+
+    if (approvalState == 'approved') {
+
+        current.u_approval_status = 'approved';
+        current.u_request_status = 'approved';
+
+    } else if (approvalState == 'rejected') {
+
+        current.u_approval_status = 'rejected';
+        current.u_request_status = 'rejected';
+
+    }
+
+})(current, previous);]]></script>
+<sys_class_name>sys_script</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2026-05-09 17:27:40</sys_created_on>
+<sys_domain>global</sys_domain>
+<sys_domain_path>/</sys_domain_path>
+<sys_id>76b9be7883708710ccf5a130ceaad322</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_name>set approval status based on category</sys_name>
+<sys_overrides display_value=""/>
+<sys_package display_value="Global" source="global">global</sys_package>
+<sys_policy/>
+<sys_scope display_value="Global">global</sys_scope>
+<sys_update_name>sys_script_76b9be7883708710ccf5a130ceaad322</sys_update_name>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2026-05-09 17:27:40</sys_updated_on>
+<template/>
+<when>before</when>
+</sys_script>
+<sys_script action="INSERT_OR_UPDATE">
+<abort_action>false</abort_action>
+<access>package_private</access>
+<action_delete>false</action_delete>
+<action_insert>true</action_insert>
+<action_query>false</action_query>
+<action_update>true</action_update>
+<active>true</active>
+<add_message>false</add_message>
+<advanced>true</advanced>
+<change_fields>false</change_fields>
+<client_callable>false</client_callable>
+<collection>u_university_request</collection>
+<condition/>
+<description/>
+<execute_function>false</execute_function>
+<filter_condition table="u_university_request">u_service_typeVALCHANGES^EQ<item goto="false" or="false" field="u_service_type" endquery="false" value="" operator="VALCHANGES" newquery="false"/>
+<item goto="false" or="false" field="" endquery="true" value="" operator="=" newquery="false"/>
+</filter_condition>
+<is_rest>false</is_rest>
+<message/>
+<name>set subcategory based on service</name>
+<order>100</order>
+<priority>100</priority>
+<rest_method display_value=""/>
+<rest_method_text/>
+<rest_service display_value=""/>
+<rest_service_text/>
+<rest_variables/>
+<role_conditions/>
+<script><![CDATA[(function executeRule(current, previous) {
+
+    var serviceType = current.u_service_type.toString();
+
+    var subCategoryMap = {
+        'Transcript': 'Official,Unofficial',
+        'ID Card': 'New,Replacement,Lost',
+        'Fee Payment': 'Tuition,Fine,Hostel',
+        'Bonafide': 'Study,Employment,Visa',
+        'Library': 'New Membership,Renewal,No Dues',
+        'Exam': 'Hall Ticket,Revaluation,Result'
+    };
+
+    if (subCategoryMap[serviceType]) {
+
+        // Auto set first value if sub category is empty
+        if (gs.nil(current.u_sub_category)) {
+            current.u_sub_category = subCategoryMap[serviceType].split(',')[0];
+        }
+
+    } else {
+
+        current.u_sub_category = '';
+
+    }
+
+})(current, previous);]]></script>
+<sys_class_name>sys_script</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2026-05-09 17:24:36</sys_created_on>
+<sys_domain>global</sys_domain>
+<sys_domain_path>/</sys_domain_path>
+<sys_id>e938beb483708710ccf5a130ceaad379</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_name>set subcategory based on service</sys_name>
+<sys_overrides display_value=""/>
+<sys_package display_value="Global" source="global">global</sys_package>
+<sys_policy/>
+<sys_scope display_value="Global">global</sys_scope>
+<sys_update_name>sys_script_e938beb483708710ccf5a130ceaad379</sys_update_name>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2026-05-09 17:24:36</sys_updated_on>
+<template/>
+<when>before</when>
+</sys_script>
+</unload>

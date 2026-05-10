@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unload unload_date="2026-05-10 09:06:23">
+<sys_script_include action="INSERT_OR_UPDATE">
+<access>package_private</access>
+<active>true</active>
+<api_name>global.Chatbot worknotes handler </api_name>
+<caller_access/>
+<client_callable>false</client_callable>
+<description/>
+<mobile_callable>false</mobile_callable>
+<name>Chatbot worknotes handler </name>
+<sandbox_callable>false</sandbox_callable>
+<script><![CDATA[var ChatbotCommentHandler = Class.create();
+
+ChatbotCommentHandler.prototype = {
+
+    initialize: function(taskRecord) {
+
+        this.task = taskRecord;
+        this.adminName = gs.getUserDisplayName();
+
+    },
+
+    validateComment: function(commentText) {
+
+        if (!commentText || commentText.trim() == '') {
+
+            gs.addErrorMessage(
+                'Comment cannot be empty. Please provide a response for the student.'
+            );
+
+            return false;
+        }
+
+        if (commentText.trim().length < 15) {
+
+            gs.addErrorMessage(
+                'Comment is too short (minimum 15 characters). Please provide a meaningful response.'
+            );
+
+            return false;
+        }
+
+        return true;
+    },
+
+    formatComment: function(commentText) {
+
+        var now = new GlideDateTime();
+
+        var formatted =
+            '[Admin: ' + this.adminName + '] ' +
+            '[' + now.getDisplayValue() + '] ' +
+            '\n' + commentText.trim();
+
+        return formatted;
+    },
+
+    notifyStudent: function(commentText) {
+
+        var taskNum = this.task.getValue('number');
+        var studentEmail = this.task.getValue('u_student_email');
+
+        if (!studentEmail) {
+
+            gs.log(
+                'ChatbotCommentHandler: No student email found for task ' + taskNum,
+                'ChatbotCommentHandler'
+            );
+
+            return;
+        }
+
+        gs.eventQueue(
+            'chatbot.task.comment.added',
+            this.task,
+            studentEmail,
+            commentText
+        );
+
+        gs.log(
+            'Work note notification queued for task ' + taskNum,
+            'ChatbotCommentHandler'
+        );
+    },
+
+    processComment: function(commentText) {
+
+        if (!this.validateComment(commentText)) {
+            return false;
+        }
+
+        var formatted = this.formatComment(commentText);
+
+        // Save into Work Notes instead of Comments
+        this.task.setValue('work_notes', formatted);
+
+        this.notifyStudent(formatted);
+
+        return true;
+    },
+
+    type: 'ChatbotCommentHandler'
+};]]></script>
+<sys_class_name>sys_script_include</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2026-05-09 17:58:31</sys_created_on>
+<sys_id>86ffb6b483b08710ccf5a130ceaad304</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_name>Chatbot worknotes handler </sys_name>
+<sys_package display_value="Global" source="global">global</sys_package>
+<sys_policy/>
+<sys_scope display_value="Global">global</sys_scope>
+<sys_update_name>sys_script_include_86ffb6b483b08710ccf5a130ceaad304</sys_update_name>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2026-05-09 17:58:31</sys_updated_on>
+</sys_script_include>
+</unload>

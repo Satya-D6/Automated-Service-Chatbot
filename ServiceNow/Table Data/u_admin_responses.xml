@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unload unload_date="2026-05-10 08:27:14">
+<u_admin_responses action="INSERT_OR_UPDATE">
+<active>true</active>
+<activity_due/>
+<additional_assignee_list/>
+<approval>not requested</approval>
+<approval_history/>
+<approval_set/>
+<assigned_to display_value=""/>
+<assignment_group display_value=""/>
+<business_duration/>
+<business_service display_value=""/>
+<calendar_duration/>
+<close_notes/>
+<closed_at/>
+<closed_by display_value=""/>
+<cmdb_ci display_value=""/>
+<comments/>
+<comments_and_work_notes/>
+<company display_value=""/>
+<contact_type/>
+<contract display_value=""/>
+<correlation_display/>
+<correlation_id/>
+<delivery_plan display_value=""/>
+<delivery_task display_value=""/>
+<description/>
+<due_date/>
+<escalation>0</escalation>
+<expected_start/>
+<follow_up/>
+<group_list/>
+<impact>3</impact>
+<knowledge>false</knowledge>
+<location display_value=""/>
+<made_sla>true</made_sla>
+<number>TASK0020309</number>
+<opened_at>2026-05-08 15:23:49</opened_at>
+<opened_by display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</opened_by>
+<order/>
+<parent display_value=""/>
+<priority>4</priority>
+<reassignment_count>0</reassignment_count>
+<rejection_goto display_value=""/>
+<route_reason/>
+<service_offering display_value=""/>
+<short_description>Admin response for TASK0020308</short_description>
+<sla_due/>
+<state>1</state>
+<sys_class_name>u_admin_responses</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2026-05-08 15:23:49</sys_created_on>
+<sys_domain>global</sys_domain>
+<sys_domain_path>/</sys_domain_path>
+<sys_id>3e14d9ec83b4c310ccf5a130ceaad3d7</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2026-05-08 15:23:49</sys_updated_on>
+<task_effective_number>TASK0020309</task_effective_number>
+<time_worked/>
+<u_action>approve</u_action>
+<u_admin_name>Super Admin</u_admin_name>
+<u_response_text>it needs manual approval</u_response_text>
+<u_student_id>sruthi@123</u_student_id>
+<u_ticket_number>TASK0020308</u_ticket_number>
+<universal_request display_value=""/>
+<upon_approval>proceed</upon_approval>
+<upon_reject>cancel</upon_reject>
+<urgency>3</urgency>
+<user_input/>
+<variables/>
+<watch_list/>
+<wf_activity display_value=""/>
+<work_end/>
+<work_notes/>
+<work_notes_list/>
+<work_start/>
+</u_admin_responses>
+<u_admin_responses action="INSERT_OR_UPDATE">
+<active>true</active>
+<activity_due/>
+<additional_assignee_list/>
+<approval>not requested</approval>
+<approval_history/>
+<approval_set/>
+<assigned_to display_value=""/>
+<assignment_group display_value=""/>
+<business_duration/>
+<business_service display_value=""/>
+<calendar_duration/>
+<close_notes/>
+<closed_at/>
+<closed_by display_value=""/>
+<cmdb_ci display_value=""/>
+<comments/>
+<comments_and_work_notes/>
+<company display_value=""/>
+<contact_type/>
+<contract display_value=""/>
+<correlation_display/>
+<correlation_id/>
+<delivery_plan display_value=""/>
+<delivery_task display_value=""/>
+<description/>
+<due_date/>
+<escalation>0</escalation>
+<expected_start/>
+<follow_up/>
+<group_list/>
+<impact>3</impact>
+<knowledge>false</knowledge>
+<location display_value=""/>
+<made_sla>true</made_sla>
+<number>TASK0020311</number>
+<opened_at>2026-05-08 16:54:17</opened_at>
+<opened_by display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</opened_by>
+<order/>
+<parent display_value=""/>
+<priority>4</priority>
+<reassignment_count>0</reassignment_count>
+<rejection_goto display_value=""/>
+<route_reason/>
+<service_offering display_value=""/>
+<short_description>Admin response for TASK0020281</short_description>
+<sla_due/>
+<state>1</state>
+<sys_class_name>u_admin_responses</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2026-05-08 16:54:17</sys_created_on>
+<sys_domain>global</sys_domain>
+<sys_domain_path>/</sys_domain_path>
+<sys_id>37c825ac83fc8310ccf5a130ceaad35a</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2026-05-08 16:54:17</sys_updated_on>
+<task_effective_number>TASK0020311</task_effective_number>
+<time_worked/>
+<u_action>approve</u_action>
+<u_admin_name>Exam Cell Admin</u_admin_name>
+<u_response_text>jkgtyf</u_response_text>
+<u_student_id>jgc,</u_student_id>
+<u_ticket_number>TASK0020281</u_ticket_number>
+<universal_request display_value=""/>
+<upon_approval>proceed</upon_approval>
+<upon_reject>cancel</upon_reject>
+<urgency>3</urgency>
+<user_input/>
+<variables/>
+<watch_list/>
+<wf_activity display_value=""/>
+<work_end/>
+<work_notes/>
+<work_notes_list/>
+<work_start/>
+</u_admin_responses>
+<u_admin_responses action="INSERT_OR_UPDATE">
+<active>true</active>
+<activity_due/>
+<additional_assignee_list/>
+<approval>not requested</approval>
+<approval_history/>
+<approval_set/>
+<assigned_to display_value=""/>
+<assignment_group display_value=""/>
+<business_duration/>
+<business_service display_value=""/>
+<calendar_duration/>
+<close_notes/>
+<closed_at/>
+<closed_by display_value=""/>
+<cmdb_ci display_value=""/>
+<comments/>
+<comments_and_work_notes/>
+<company display_value=""/>
+<contact_type/>
+<contract display_value=""/>
+<correlation_display/>
+<correlation_id/>
+<delivery_plan display_value=""/>
+<delivery_task display_value=""/>
+<description/>
+<due_date/>
+<escalation>0</escalation>
+<expected_start/>
+<follow_up/>
+<group_list/>
+<impact>3</impact>
+<knowledge>false</knowledge>
+<location display_value=""/>
+<made_sla>true</made_sla>
+<number>TASK0020313</number>
+<opened_at>2026-05-09 06:08:45</opened_at>
+<opened_by display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</opened_by>
+<order/>
+<parent display_value=""/>
+<priority>4</priority>
+<reassignment_count>0</reassignment_count>
+<rejection_goto display_value=""/>
+<route_reason/>
+<service_offering display_value=""/>
+<short_description>Admin response for TASK0020312</short_description>
+<sla_due/>
+<state>1</state>
+<sys_class_name>u_admin_responses</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2026-05-09 06:08:45</sys_created_on>
+<sys_domain>global</sys_domain>
+<sys_domain_path>/</sys_domain_path>
+<sys_id>65ae18fc83bc0710ccf5a130ceaad38a</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2026-05-09 06:08:45</sys_updated_on>
+<task_effective_number>TASK0020313</task_effective_number>
+<time_worked/>
+<u_action>approve</u_action>
+<u_admin_name>Super Admin</u_admin_name>
+<u_response_text>fees reciept send to your official outlook account</u_response_text>
+<u_student_id>nikitha@.com</u_student_id>
+<u_ticket_number>TASK0020312</u_ticket_number>
+<universal_request display_value=""/>
+<upon_approval>proceed</upon_approval>
+<upon_reject>cancel</upon_reject>
+<urgency>3</urgency>
+<user_input/>
+<variables/>
+<watch_list/>
+<wf_activity display_value=""/>
+<work_end/>
+<work_notes/>
+<work_notes_list/>
+<work_start/>
+</u_admin_responses>
+<u_admin_responses action="INSERT_OR_UPDATE">
+<active>true</active>
+<activity_due/>
+<additional_assignee_list/>
+<approval>not requested</approval>
+<approval_history/>
+<approval_set/>
+<assigned_to display_value=""/>
+<assignment_group display_value=""/>
+<business_duration/>
+<business_service display_value=""/>
+<calendar_duration/>
+<close_notes/>
+<closed_at/>
+<closed_by display_value=""/>
+<cmdb_ci display_value=""/>
+<comments/>
+<comments_and_work_notes/>
+<company display_value=""/>
+<contact_type/>
+<contract display_value=""/>
+<correlation_display/>
+<correlation_id/>
+<delivery_plan display_value=""/>
+<delivery_task display_value=""/>
+<description/>
+<due_date/>
+<escalation>0</escalation>
+<expected_start/>
+<follow_up/>
+<group_list/>
+<impact>3</impact>
+<knowledge>false</knowledge>
+<location display_value=""/>
+<made_sla>true</made_sla>
+<number>TASK0020315</number>
+<opened_at>2026-05-09 06:19:15</opened_at>
+<opened_by display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</opened_by>
+<order/>
+<parent display_value=""/>
+<priority>4</priority>
+<reassignment_count>0</reassignment_count>
+<rejection_goto display_value=""/>
+<route_reason/>
+<service_offering display_value=""/>
+<short_description>Admin response for TASK0020314</short_description>
+<sla_due/>
+<state>1</state>
+<sys_class_name>u_admin_responses</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2026-05-09 06:19:15</sys_created_on>
+<sys_domain>global</sys_domain>
+<sys_domain_path>/</sys_domain_path>
+<sys_id>a301a43483fc0710ccf5a130ceaad338</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2026-05-09 06:19:15</sys_updated_on>
+<task_effective_number>TASK0020315</task_effective_number>
+<time_worked/>
+<u_action>approve</u_action>
+<u_admin_name>Super Admin</u_admin_name>
+<u_response_text>id issues tomorrow</u_response_text>
+<u_student_id>ganga</u_student_id>
+<u_ticket_number>TASK0020314</u_ticket_number>
+<universal_request display_value=""/>
+<upon_approval>proceed</upon_approval>
+<upon_reject>cancel</upon_reject>
+<urgency>3</urgency>
+<user_input/>
+<variables/>
+<watch_list/>
+<wf_activity display_value=""/>
+<work_end/>
+<work_notes/>
+<work_notes_list/>
+<work_start/>
+</u_admin_responses>
+<u_admin_responses action="INSERT_OR_UPDATE">
+<active>true</active>
+<activity_due/>
+<additional_assignee_list/>
+<approval>not requested</approval>
+<approval_history/>
+<approval_set/>
+<assigned_to display_value=""/>
+<assignment_group display_value=""/>
+<business_duration/>
+<business_service display_value=""/>
+<calendar_duration/>
+<close_notes/>
+<closed_at/>
+<closed_by display_value=""/>
+<cmdb_ci display_value=""/>
+<comments/>
+<comments_and_work_notes/>
+<company display_value=""/>
+<contact_type/>
+<contract display_value=""/>
+<correlation_display/>
+<correlation_id/>
+<delivery_plan display_value=""/>
+<delivery_task display_value=""/>
+<description/>
+<due_date/>
+<escalation>0</escalation>
+<expected_start/>
+<follow_up/>
+<group_list/>
+<impact>3</impact>
+<knowledge>false</knowledge>
+<location display_value=""/>
+<made_sla>true</made_sla>
+<number>TASK0020317</number>
+<opened_at>2026-05-09 06:40:39</opened_at>
+<opened_by display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</opened_by>
+<order/>
+<parent display_value=""/>
+<priority>4</priority>
+<reassignment_count>0</reassignment_count>
+<rejection_goto display_value=""/>
+<route_reason/>
+<service_offering display_value=""/>
+<short_description>Admin response for TASK0020316</short_description>
+<sla_due/>
+<state>1</state>
+<sys_class_name>u_admin_responses</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2026-05-09 06:40:39</sys_created_on>
+<sys_domain>global</sys_domain>
+<sys_domain_path>/</sys_domain_path>
+<sys_id>c5f5ec7c83fc0710ccf5a130ceaad3aa</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2026-05-09 06:40:39</sys_updated_on>
+<task_effective_number>TASK0020317</task_effective_number>
+<time_worked/>
+<u_action>approve</u_action>
+<u_admin_name>Super Admin</u_admin_name>
+<u_response_text>diva i send you the registartion detaile to your outlook account</u_response_text>
+<u_student_id>diva</u_student_id>
+<u_ticket_number>TASK0020316</u_ticket_number>
+<universal_request display_value=""/>
+<upon_approval>proceed</upon_approval>
+<upon_reject>cancel</upon_reject>
+<urgency>3</urgency>
+<user_input/>
+<variables/>
+<watch_list/>
+<wf_activity display_value=""/>
+<work_end/>
+<work_notes/>
+<work_notes_list/>
+<work_start/>
+</u_admin_responses>
+<u_admin_responses action="INSERT_OR_UPDATE">
+<active>true</active>
+<activity_due/>
+<additional_assignee_list/>
+<approval>not requested</approval>
+<approval_history/>
+<approval_set/>
+<assigned_to display_value=""/>
+<assignment_group display_value=""/>
+<business_duration/>
+<business_service display_value=""/>
+<calendar_duration/>
+<close_notes/>
+<closed_at/>
+<closed_by display_value=""/>
+<cmdb_ci display_value=""/>
+<comments/>
+<comments_and_work_notes/>
+<company display_value=""/>
+<contact_type/>
+<contract display_value=""/>
+<correlation_display/>
+<correlation_id/>
+<delivery_plan display_value=""/>
+<delivery_task display_value=""/>
+<description/>
+<due_date/>
+<escalation>0</escalation>
+<expected_start/>
+<follow_up/>
+<group_list/>
+<impact>3</impact>
+<knowledge>false</knowledge>
+<location display_value=""/>
+<made_sla>true</made_sla>
+<number>TASK0020319</number>
+<opened_at>2026-05-09 06:52:27</opened_at>
+<opened_by display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</opened_by>
+<order/>
+<parent display_value=""/>
+<priority>4</priority>
+<reassignment_count>0</reassignment_count>
+<rejection_goto display_value=""/>
+<route_reason/>
+<service_offering display_value=""/>
+<short_description>Admin response for TASK0020318</short_description>
+<sla_due/>
+<state>1</state>
+<sys_class_name>u_admin_responses</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2026-05-09 06:52:27</sys_created_on>
+<sys_domain>global</sys_domain>
+<sys_domain_path>/</sys_domain_path>
+<sys_id>fda860f083304710ccf5a130ceaad3b8</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2026-05-09 06:52:27</sys_updated_on>
+<task_effective_number>TASK0020319</task_effective_number>
+<time_worked/>
+<u_action>approve</u_action>
+<u_admin_name>Super Admin</u_admin_name>
+<u_response_text>i rosolvethe issue and clear it</u_response_text>
+<u_student_id>ganga1</u_student_id>
+<u_ticket_number>TASK0020318</u_ticket_number>
+<universal_request display_value=""/>
+<upon_approval>proceed</upon_approval>
+<upon_reject>cancel</upon_reject>
+<urgency>3</urgency>
+<user_input/>
+<variables/>
+<watch_list/>
+<wf_activity display_value=""/>
+<work_end/>
+<work_notes/>
+<work_notes_list/>
+<work_start/>
+</u_admin_responses>
+<u_admin_responses action="INSERT_OR_UPDATE">
+<active>true</active>
+<activity_due/>
+<additional_assignee_list/>
+<approval>not requested</approval>
+<approval_history/>
+<approval_set/>
+<assigned_to display_value=""/>
+<assignment_group display_value=""/>
+<business_duration/>
+<business_service display_value=""/>
+<calendar_duration/>
+<close_notes/>
+<closed_at/>
+<closed_by display_value=""/>
+<cmdb_ci display_value=""/>
+<comments/>
+<comments_and_work_notes/>
+<company display_value=""/>
+<contact_type/>
+<contract display_value=""/>
+<correlation_display/>
+<correlation_id/>
+<delivery_plan display_value=""/>
+<delivery_task display_value=""/>
+<description/>
+<due_date/>
+<escalation>0</escalation>
+<expected_start/>
+<follow_up/>
+<group_list/>
+<impact>3</impact>
+<knowledge>false</knowledge>
+<location display_value=""/>
+<made_sla>true</made_sla>
+<number>TASK0020343</number>
+<opened_at>2026-05-09 08:47:11</opened_at>
+<opened_by display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</opened_by>
+<order/>
+<parent display_value=""/>
+<priority>4</priority>
+<reassignment_count>0</reassignment_count>
+<rejection_goto display_value=""/>
+<route_reason/>
+<service_offering display_value=""/>
+<short_description>Admin response for TASK0020342</short_description>
+<sla_due/>
+<state>1</state>
+<sys_class_name>u_admin_responses</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2026-05-09 08:47:11</sys_created_on>
+<sys_domain>global</sys_domain>
+<sys_domain_path>/</sys_domain_path>
+<sys_id>a2e241f483f04710ccf5a130ceaad3ec</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2026-05-09 08:47:11</sys_updated_on>
+<task_effective_number>TASK0020343</task_effective_number>
+<time_worked/>
+<u_action>hold</u_action>
+<u_admin_name>Super Admin</u_admin_name>
+<u_response_text>you must submit all the mentioned details</u_response_text>
+<u_student_id>ganga 2</u_student_id>
+<u_ticket_number>TASK0020342</u_ticket_number>
+<universal_request display_value=""/>
+<upon_approval>proceed</upon_approval>
+<upon_reject>cancel</upon_reject>
+<urgency>3</urgency>
+<user_input/>
+<variables/>
+<watch_list/>
+<wf_activity display_value=""/>
+<work_end/>
+<work_notes/>
+<work_notes_list/>
+<work_start/>
+</u_admin_responses>
+<u_admin_responses action="INSERT_OR_UPDATE">
+<active>true</active>
+<activity_due/>
+<additional_assignee_list/>
+<approval>not requested</approval>
+<approval_history/>
+<approval_set/>
+<assigned_to display_value=""/>
+<assignment_group display_value=""/>
+<business_duration/>
+<business_service display_value=""/>
+<calendar_duration/>
+<close_notes/>
+<closed_at/>
+<closed_by display_value=""/>
+<cmdb_ci display_value=""/>
+<comments/>
+<comments_and_work_notes/>
+<company display_value=""/>
+<contact_type/>
+<contract display_value=""/>
+<correlation_display/>
+<correlation_id/>
+<delivery_plan display_value=""/>
+<delivery_task display_value=""/>
+<description/>
+<due_date/>
+<escalation>0</escalation>
+<expected_start/>
+<follow_up/>
+<group_list/>
+<impact>3</impact>
+<knowledge>false</knowledge>
+<location display_value=""/>
+<made_sla>true</made_sla>
+<number>TASK0020345</number>
+<opened_at>2026-05-09 08:58:33</opened_at>
+<opened_by display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</opened_by>
+<order/>
+<parent display_value=""/>
+<priority>4</priority>
+<reassignment_count>0</reassignment_count>
+<rejection_goto display_value=""/>
+<route_reason/>
+<service_offering display_value=""/>
+<short_description>Admin response for TASK0020344</short_description>
+<sla_due/>
+<state>1</state>
+<sys_class_name>u_admin_responses</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2026-05-09 08:58:33</sys_created_on>
+<sys_domain>global</sys_domain>
+<sys_domain_path>/</sys_domain_path>
+<sys_id>0585cdf883f04710ccf5a130ceaad3cb</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2026-05-09 08:58:33</sys_updated_on>
+<task_effective_number>TASK0020345</task_effective_number>
+<time_worked/>
+<u_action>hold</u_action>
+<u_admin_name>Super Admin</u_admin_name>
+<u_response_text>in your account havving lot of issue please send the appropriate details</u_response_text>
+<u_student_id>ganga 3</u_student_id>
+<u_ticket_number>TASK0020344</u_ticket_number>
+<universal_request display_value=""/>
+<upon_approval>proceed</upon_approval>
+<upon_reject>cancel</upon_reject>
+<urgency>3</urgency>
+<user_input/>
+<variables/>
+<watch_list/>
+<wf_activity display_value=""/>
+<work_end/>
+<work_notes/>
+<work_notes_list/>
+<work_start/>
+</u_admin_responses>
+</unload>

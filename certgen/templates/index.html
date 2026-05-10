@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select, button {
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Certificate Generator</h1>
+    <form id="certificateForm">
+        <div class="form-group">
+            <label for="certificateType">Select Certificate Type:</label>
+            <select id="certificateType" name="certificate_type" required>
+                <option value="">-- Select --</option>
+                <option value="bonafide">Bonafide Certificate</option>
+                <option value="conduct">Conduct Certificate</option>
+                <option value="study_certificate">Study Certificate</option>
+                <option value="fee_receipt">Fee Receipt</option>
+                <option value="tc">Transfer Certificate</option>
+            </select>
+        </div>
+
+        <div id="dynamicFields"></div>
+
+        <button type="submit">Generate Certificate</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('certificateForm');
+        const certificateType = document.getElementById('certificateType');
+        const dynamicFields = document.getElementById('dynamicFields');
+
+        const fields = {
+            bonafide: [
+                { name: 'student_name', label: 'Student Name' },
+                { name: 'roll_no', label: 'Roll Number' },
+                { name: 'department', label: 'Department' },
+                { name: 'semester', label: 'Semester' },
+                { name: 'academic_year', label: 'Academic Year' },
+                {name: 'date', label: 'Date of Issue' }
+            ],
+            conduct: [
+                { name: 'student_name', label: 'Student Name' },
+                { name: 'parent_name', label: 'Parent Name' },
+                { name: 'department', label: 'Department' },
+                { name: 'register_number', label: 'Register Number' },
+                { name: 'from_date', label: 'From Date' },
+                { name: 'to_date', label: 'To Date' },
+                { name: 'conduct_status', label: 'Conduct Status' }
+            ],
+            study_certificate: [
+                { name: 'student_name', label: 'Student Name' },
+                { name: 'parent_name', label: 'Parent Name' },
+                { name: 'roll_no', label: 'Roll Number' },
+                { name: 'branch_specialization', label: 'Branch Specialization' },
+                {name: 'from_year', label: 'From Year' },
+                { name: 'to_year', label: 'To Year' },
+                {name:'conduct_status', label: 'Conduct Status' },
+                {name: 'date', label: 'Date of Issue' }
+                
+            ],
+            fee_receipt: [
+                { name: 'student_name', label: 'Student Name' },
+                { name: 'roll_no', label: 'Roll Number' },
+                { name: 'amount', label: 'Amount' },
+                { name: 'date', label: 'Date' }
+            ],
+            tc: [
+                {name: 'tc_no', label: 'TC Number' },
+                {name: 'admission_no', label: 'Admission Number' },
+                { name: 'student_name', label: 'Student Name' },
+                {name : 'father_name', label: 'Father Name' },
+                {name: 'mother_name', label: 'Mother Name' },
+                {name:'nationality_religion', label: 'Nationality/Religion' },  
+                {name: 'dob', label: 'Date of Birth' },
+                { name: 'course_branch', label: 'Department' },
+                { name: 'study_period', label: 'Study Period ' },
+                {name:'leaving_date', label: 'Leaving Date' },
+                {name: 'reason_for_leaving', label: 'Reason for Transfer' },
+                { name: 'conduct_character', label: 'Conduct Character' }
+            ]
+        };
+
+        certificateType.addEventListener('change', () => {
+            const selectedType = certificateType.value;
+            dynamicFields.innerHTML = '';
+
+            if (fields[selectedType]) {
+                fields[selectedType].forEach(field => {
+                    const div = document.createElement('div');
+                    div.className = 'form-group';
+
+                    const label = document.createElement('label');
+                    label.htmlFor = field.name;
+                    label.textContent = field.label;
+
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.id = field.name;
+                    input.name = field.name;
+                    input.required = true;
+
+                    div.appendChild(label);
+                    div.appendChild(input);
+                    dynamicFields.appendChild(div);
+                });
+            }
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/generate-certificate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${data.student_name}_${data.certificate_type}.docx`;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                } else {
+                    const error = await response.json();
+                    alert(`Error: ${error.message}`);
+                }
+            } catch (err) {
+                alert('An error occurred while generating the certificate.');
+            }
+        });
+    </script>
+</body>
+</html>
