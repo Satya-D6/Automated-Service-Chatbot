@@ -50,11 +50,13 @@ export default function ChatInterface({ user, onLogout }) {
 
     const poller = new ResponsePoller(ticketNumber, (response) => {
       console.log('[ChatInterface] Admin response received:', response);
+      console.log('[ChatInterface] Attachments received:', response.attachments);
 
       const actionLabel = ACTION_LABELS[response.u_action] || '📋 Responded';
       const actionColor = ACTION_COLORS[response.u_action] || '#4f8ef7';
 
       // Add admin response as a message in the chat
+      // attachments array is passed so Message.jsx can show download buttons
       setMessages(prev => [
         ...prev,
         {
@@ -67,6 +69,7 @@ export default function ChatInterface({ user, onLogout }) {
             action:        response.u_action,
             actionLabel,
             actionColor,
+            attachments:   response.attachments || [],
           },
         },
       ]);
@@ -107,7 +110,6 @@ export default function ChatInterface({ user, onLogout }) {
 
     if (result.success && ticketId) {
       console.log('[ChatInterface] Ticket created:', ticketId, '— starting poller');
-      // Start polling for admin response
       startPollingForResponse(ticketId);
 
       setTimeout(() => {
