@@ -1,33 +1,91 @@
 import React, { useState } from 'react'
 import { Shield, Eye, EyeOff, Loader } from 'lucide-react'
 
-// Simple hardcoded admin accounts (no backend needed)
-const ADMINS = [
-  { email: 'cert.admin@university.edu', password: 'admin123', name: 'Certificate Admin', dept: 'Certificates', avatar: 'CA' },
-  { email: 'exam.admin@university.edu', password: 'admin123', name: 'Exam Cell Admin', dept: 'Examinations', avatar: 'EA' },
-  { email: 'finance.admin@university.edu', password: 'admin123', name: 'Finance Admin', dept: 'Fee & Payments', avatar: 'FA' },
-  { email: 'admin@university.edu', password: 'admin123', name: 'Super Admin', dept: 'All Departments', avatar: 'SA' },
-]
-
 export default function Login({ onLogin }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [fullName, setFullName] = useState('')
+  const [adminId, setAdminId] = useState('')
+  const [department, setDepartment] = useState('Student Services')
   const [showPass, setShowPass] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [isSignUp, setIsSignUp] = useState(false)
 
   const handleLogin = async (e) => {
     e.preventDefault()
     setError('')
     setLoading(true)
-    await new Promise(r => setTimeout(r, 800))
-    const admin = ADMINS.find(a => a.email === email && a.password === password)
-    if (admin) {
-      onLogin(admin)
-    } else {
-      setError('Invalid credentials. Try admin@university.edu / admin123')
+
+    try {
+      const response = await fetch('http://localhost:5001/api/auth/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        localStorage.setItem('adminToken', data.token)
+        localStorage.setItem('adminData', JSON.stringify(data.admin))
+        onLogin(data.admin)
+      } else {
+        setError(data.error || 'Login failed')
+      }
+    } catch (err) {
+      setError('Connection error. Is backend running on port 5001?')
+      console.error('Login error:', err)
+    } finally {
+      setLoading(false)
     }
-    setLoading(false)
+  }
+
+  const handleSignUp = async (e) => {
+    e.preventDefault()
+    setError('')
+    setLoading(true)
+
+    if (!fullName.trim()) {
+      setError('Please enter your full name')
+      setLoading(false)
+      return
+    }
+
+    if (!adminId.trim()) {
+      setError('Please enter your admin ID')
+      setLoading(false)
+      return
+    }
+
+    try {
+      const response = await fetch('http://localhost:5001/api/auth/admin/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          password,
+          adminId,
+          fullName,
+          department
+        })
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        localStorage.setItem('adminToken', data.token)
+        localStorage.setItem('adminData', JSON.stringify(data.admin))
+        onLogin(data.admin)
+      } else {
+        setError(data.error || 'Registration failed')
+      }
+    } catch (err) {
+      setError('Connection error. Is backend running on port 5001?')
+      console.error('Signup error:', err)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -41,9 +99,52 @@ export default function Login({ onLogin }) {
           <Shield size={28} color="#4f8ef7" />
         </div>
         <h1 style={styles.title}>UniAssist<br /><span style={styles.sub}>Admin Portal</span></h1>
-        <p style={styles.hint}>Powered by ServiceNow PDI</p>
+        <p style={styles.hint}>{isSignUp ? 'Create Admin Account' : 'MongoDB Authentication'}</p>
 
-        <form onSubmit={handleLogin} style={styles.form}>
+        <form onSubmit={isSignUp ? handleSignUp : handleLogin} style={styles.form}>
+          {isSignUp && (
+            <>
+              <div style={styles.field}>
+                <label style={styles.label}>Full Name</label>
+                <input
+                  type="text"
+                  value={fullName}
+                  onChange={e => setFullName(e.target.value)}
+                  placeholder="Your Full Name"
+                  required={isSignUp}
+                  style={styles.input}
+                />
+              </div>
+
+              <div style={styles.field}>
+                <label style={styles.label}>Admin ID</label>
+                <input
+                  type="text"
+                  value={adminId}
+                  onChange={e => setAdminId(e.target.value)}
+                  placeholder="ADM001"
+                  required={isSignUp}
+                  style={styles.input}
+                />
+              </div>
+
+              <div style={styles.field}>
+                <label style={styles.label}>Department</label>
+                <select
+                  value={department}
+                  onChange={e => setDepartment(e.target.value)}
+                  style={styles.input}
+                >
+                  <option>Student Services</option>
+                  <option>Examinations</option>
+                  <option>Certificates</option>
+                  <option>Finance</option>
+                  <option>Admissions</option>
+                </select>
+              </div>
+            </>
+          )}
+
           <div style={styles.field}>
             <label style={styles.label}>Email Address</label>
             <input
@@ -81,29 +182,28 @@ export default function Login({ onLogin }) {
 
           <button type="submit" disabled={loading} style={styles.btn}>
             {loading
-              ? <><Loader size={16} style={{ animation: 'spin 1s linear infinite' }} /> Signing in...</>
-              : 'Sign In →'
+              ? <><Loader size={16} style={{ animation: 'spin 1s linear infinite' }} /> Processing...</>
+              : isSignUp ? 'Sign Up →' : 'Sign In →'
             }
           </button>
         </form>
 
-        {/* Demo credentials */}
-        <div style={styles.demoBox}>
-          <p style={{ color: '#525972', fontSize: '0.75rem', marginBottom: 6 }}>Demo Accounts</p>
-          {ADMINS.map(a => (
+        {/* Toggle between Sign In and Sign Up */}
+        <div style={styles.toggleBox}>
+          <p style={styles.toggleText}>
+            {isSignUp ? 'Already have an account?' : "Don't have an account?"}
+            {' '}
             <button
-              key={a.email}
-              onClick={() => { setEmail(a.email); setPassword(a.password) }}
-              style={styles.demoBtn}
+              type="button"
+              onClick={() => {
+                setIsSignUp(!isSignUp)
+                setError('')
+              }}
+              style={styles.toggleBtn}
             >
-              <span style={styles.avatar}>{a.avatar}</span>
-              <span>
-                <span style={{ color: '#8891a8', fontSize: '0.8rem' }}>{a.name}</span>
-                <br />
-                <span style={{ color: '#525972', fontSize: '0.72rem' }}>{a.dept}</span>
-              </span>
+              {isSignUp ? 'Sign In' : 'Sign Up'}
             </button>
-          ))}
+          </p>
         </div>
       </div>
     </div>
@@ -194,5 +294,19 @@ const styles = {
     display: 'flex', alignItems: 'center', justifyContent: 'center',
     fontSize: '0.7rem', fontWeight: 700, color: '#fff',
     flexShrink: 0,
+  },
+  toggleBox: {
+    marginTop: 20, paddingTop: 20,
+    borderTop: '1px solid rgba(255,255,255,0.06)',
+    textAlign: 'center',
+  },
+  toggleText: {
+    fontSize: '0.85rem', color: '#8891a8', margin: 0,
+  },
+  toggleBtn: {
+    background: 'none', border: 'none',
+    color: '#4f8ef7', fontWeight: 600,
+    cursor: 'pointer', fontSize: '0.85rem',
+    padding: 0, marginLeft: 4,
   },
 }
